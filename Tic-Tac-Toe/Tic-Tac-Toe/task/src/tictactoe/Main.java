@@ -21,13 +21,6 @@ public class Main {
             "(2,2)", "(3,2)"}, {"(1,1)", "(2,1)", "(3,1)"}};
 
     public static void main(String[] args) {
-        /* old version: System.out.print("Enter cells: ");
-        Scanner scanner = new Scanner(System.in);
-        // get initial incomplete user input as a single string
-        // String inputString = scanner.next();
-
-        // fill matrix with available input then print it to the screen
-        field = getFieldMatrix(inputString); */
         field = getFieldMatrix();
         printFieldMatrix(field);
 
@@ -49,8 +42,6 @@ public class Main {
         } else if (emptyCellsCount == 0) {
             System.out.println("Draw");
         }
-
-        // hold for now: displayGameStatus();
     }
 
     private static void printFieldMatrix(char[][] field) {
@@ -66,9 +57,7 @@ public class Main {
     }
 
     public static char[][] getFieldMatrix() {
-        // extract characters from user's string
-        // char[] chars = inputStr.toCharArray();
-        // create a 3x3 field using these characters
+        // create a 3x3 matrix filled with white spaces
         char[][] fieldMatrix = new char[3][3];
         int index = 0;
         for (int i = 0; i < 3; i++) {
@@ -161,12 +150,10 @@ public class Main {
                     xWon = true;
                     gameOn = false;
                     return;
-                    // error check: System.out.println("X wins normally");
                 } else if (oPerRow == 3) {
                     oWon = true;
                     gameOn = false;
                     return;
-                    // error check: System.out.println("X wins normally");
                 }
             }
             // reset row counters
@@ -179,13 +166,13 @@ public class Main {
             xWon = true;
             gameOn = false;
             return;
-            // error check: System.out.println("X wins diagonally");
+
         } else if (Arrays.equals(rightDiagonlaRow, new char[]{'O', 'O', 'O'}) ||
                 Arrays.equals(leftDiagonlaRow, new char[]{'O', 'O', 'O'})) {
             oWon = true;
             gameOn = false;
             return;
-            // error check: System.out.println("O wins diagonally");
+
         }
         // check vertical rows
         if (Arrays.equals(verticalRow1, new char[]{'X', 'X', 'X'}) ||
@@ -194,26 +181,14 @@ public class Main {
             xWon = true;
             gameOn = false;
             return;
-            // error check: System.out.println("X wins diagonally");
+
         }
         if (Arrays.equals(verticalRow1, new char[]{'O', 'O', 'O'}) ||
                 Arrays.equals(verticalRow2, new char[]{'O', 'O', 'O'}) ||
                 Arrays.equals(verticalRow3, new char[]{'O', 'O', 'O'})) {
             oWon = true;
             gameOn = false;
-            // error check: System.out.println("O wins diagonally");
-        }
 
-        /* old version: if (Math.abs(xCellsCount - oCellsCount) > 1 || xWon && oWon) {
-            System.out.println("Impossible");
-            } else if (xWon) {
-                System.out.println("X wins");
-            } else if (oWon) {
-                System.out.println("O wins");
-            } else if (emptyCellsCount == 0) {
-                System.out.println("Draw");
-            } else {
-                System.out.println("Game not finished");
-            }*/
+        }
     }
 }
